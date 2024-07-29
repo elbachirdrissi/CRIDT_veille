@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Système de Veille Economique</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <form action="{% url 'form' %}" method="GET">
+      {% csrf_token %}
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <img src="cridt.jpg" alt="logo_cridt">
+        </div>
+        <div class="col-md-6">
+          <div class="text-center mt-4">
+            <h2>Système de Veille Economique pour l'investissement de la région Draa Tafilalet</h2>
+            <h4>Bienvenue</h4>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="row mt-4">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="search">Recherche</label>
+            <input type="text" class="form-control" id="search" name="search_query" value="{{ request.GET.search_query }}">
+          </div>
+        </div>
+      </div>
+      
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="typeRecherche">Type de recherche</label>
+            <select class="form-control" id="typeRecherche" name="searchType">
+              <option value="" {% if request.GET.searchType == "" %}selected{% endif %}>Pages Web</option>
+              <option value="image" {% if request.GET.searchType == "image" %}selected{% endif %}>Images</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="typeFichier">Type de fichier</label>
+            <select class="form-control" id="typeFichier" name="fileType">
+              <option value="" {% if request.GET.fileType == "" %}selected{% endif %}></option>
+              <option value="pdf" {% if request.GET.fileType == "pdf" %}selected{% endif %}>Fichier PDF</option>
+              <option value="csv" {% if request.GET.fileType == "csv" %}selected{% endif %}>Fichier des données CSV</option>
+              <option value="xlsx" {% if request.GET.fileType == "xlsx" %}selected{% endif %}>Fichier Excel</option>
+              <option value="pptx" {% if request.GET.fileType == "pptx" %}selected{% endif %}>Fichier PowerPoint</option>
+              <option value="docx" {% if request.GET.fileType == "docx" %}selected{% endif %}>Fichier Word</option>
+              <option value="JPEG" {% if request.GET.fileType == "JPEG" %}selected{% endif %}>Image JPEG</option>
+              <option value="PNG" {% if request.GET.fileType == "PNG" %}selected{% endif %}>Image PNG</option>
+              <option value="GIF" {% if request.GET.fileType == "GIF" %}selected{% endif %}>Image GIF</option>
+              <option value="MP4" {% if request.GET.fileType == "MP4" %}selected{% endif %}>Vidéo MP4</option>
+              <option value="WMV" {% if request.GET.fileType == "WMV" %}selected{% endif %}>Vidéo WMV</option>
+              <option value="M4V" {% if request.GET.fileType == "M4V" %}selected{% endif %}>Vidéo M4V</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="langue">Langue des documents</label>
+            <select class="form-control" id="langue" name="lr">
+                <option value="" {% if request.GET.lr == "" %}selected{% endif %}></option>
+                <option value="lang_ar" {% if request.GET.lr == "lang_ar" %}selected{% endif %}>Arabe</option>
+                <option value="lang_bg" {% if request.GET.lr == "lang_bg" %}selected{% endif %}>Bulgare</option>
+                <option value="lang_ca" {% if request.GET.lr == "lang_ca" %}selected{% endif %}>Catalan</option>
+                <option value="lang_cs" {% if request.GET.lr == "lang_cs" %}selected{% endif %}>Tchèque</option>
+                <option value="lang_da" {% if request.GET.lr == "lang_da" %}selected{% endif %}>Danois</option>
+                <option value="lang_de" {% if request.GET.lr == "lang_de" %}selected{% endif %}>Allemand</option>
+                <option value="lang_el" {% if request.GET.lr == "lang_el" %}selected{% endif %}>Grec</option>
+                <option value="lang_en" {% if request.GET.lr == "lang_en" %}selected{% endif %}>Anglais</option>
+                <option value="lang_es" {% if request.GET.lr == "lang_es" %}selected{% endif %}>Espagnol</option>
+                <option value="lang_et" {% if request.GET.lr == "lang_et" %}selected{% endif %}>Estonien</option>
+                <option value="lang_fi" {% if request.GET.lr == "lang_fi" %}selected{% endif %}>Finnois</option>
+                <option value="lang_fr" {% if request.GET.lr == "lang_fr" %}selected{% endif %}>Français</option>
+                <option value="lang_hr" {% if request.GET.lr == "lang_hr" %}selected{% endif %}>Croate</option>
+                <option value="lang_hu" {% if request.GET.lr == "lang_hu" %}selected{% endif %}>Hongrois</option>
+                <option value="lang_id" {% if request.GET.lr == "lang_id" %}selected{% endif %}>Indonésien</option>
+                <option value="lang_is" {% if request.GET.lr == "lang_is" %}selected{% endif %}>Islandais</option>
+                <option value="lang_it" {% if request.GET.lr == "lang_it" %}selected{% endif %}>Italien</option>
+                <option value="lang_iw" {% if request.GET.lr == "lang_iw" %}selected{% endif %}>Hébreu</option>
+                <option value="lang_ja" {% if request.GET.lr == "lang_ja" %}selected{% endif %}>Japonais</option>
+                <option value="lang_ko" {% if request.GET.lr == "lang_ko" %}selected{% endif %}>Coréen</option>
+                <option value="lang_lt" {% if request.GET.lr == "lang_lt" %}selected{% endif %}>Lituanien</option>
+                <option value="lang_lv" {% if request.GET.lr == "lang_lv" %}selected{% endif %}>Letton</option>
+                <option value="lang_nl" {% if request.GET.lr == "lang_nl" %}selected{% endif %}>Néerlandais</option>
+                <option value="lang_no" {% if request.GET.lr == "lang_no" %}selected{% endif %}>Norvégien</option>
+                <option value="lang_pl" {% if request.GET.lr == "lang_pl" %}selected{% endif %}>Polonais</option>
+                <option value="lang_pt" {% if request.GET.lr == "lang_pt" %}selected{% endif %}>Portugais</option>
+                <option value="lang_ro" {% if request.GET.lr == "lang_ro" %}selected{% endif %}>Roumain</option>
+                <option value="lang_ru" {% if request.GET.lr == "lang_ru" %}selected{% endif %}>Russe</option>
+                <option value="lang_sk" {% if request.GET.lr == "lang_sk" %}selected{% endif %}>Slovaque</option>
+                <option value="lang_sl" {% if request.GET.lr == "lang_sl" %}selected{% endif %}>Slovène</option>
+                <option value="lang_sr" {% if request.GET.lr == "lang_sr" %}selected{% endif %}>Serbe</option>
+                <option value="lang_sv" {% if request.GET.lr == "lang_sv" %}selected{% endif %}>Suédois</option>
+                <option value="lang_tr" {% if request.GET.lr == "lang_tr" %}selected{% endif %}>Turc</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="provenance">Provenance</label>
+            <select class="form-control" id="provenance" name="cr">
+                <option value="" {% if request.GET.cr == "" %}selected{% endif %}></option>
+                <option value="countryAF" {% if request.GET.cr == "countryAF" %}selected{% endif %}>Afghanistan</option>
+                <option value="countryAL" {% if request.GET.cr == "countryAL" %}selected{% endif %}>Albanie</option>
+                <option value="countryDZ" {% if request.GET.cr == "countryDZ" %}selected{% endif %}>Algérie</option>
+                <option value="countryAS" {% if request.GET.cr == "countryAS" %}selected{% endif %}>Samoa américaines</option>
+                <option value="countryAD" {% if request.GET.cr == "countryAD" %}selected{% endif %}>Andorre</option>
+                <option value="countryAO" {% if request.GET.cr == "countryAO" %}selected{% endif %}>Angola</option>
+                <option value="countryAI" {% if request.GET.cr == "countryAI" %}selected{% endif %}>Anguilla</option>
+                <option value="countryAQ" {% if request.GET.cr == "countryAQ" %}selected{% endif %}>Antarctique</option>
+                <option value="countryAG" {% if request.GET.cr == "countryAG" %}selected{% endif %}>Antigua-et-Barbuda</option>
+                <option value="countryAR" {% if request.GET.cr == "countryAR" %}selected{% endif %}>Argentine</option>
+                <option value="countryAM" {% if request.GET.cr == "countryAM" %}selected{% endif %}>Arménie</option>
+                <option value="countryAW" {% if request.GET.cr == "countryAW" %}selected{% endif %}>Aruba</option>
+                <option value="countryAU" {% if request.GET.cr == "countryAU" %}selected{% endif %}>Australie</option>
+                <option value="countryAT" {% if request.GET.cr == "countryAT" %}selected{% endif %}>Autriche</option>
+                <option value="countryAZ" {% if request.GET.cr == "countryAZ" %}selected{% endif %}>Azerbaïdjan</option>
+                <option value="countryBS" {% if request.GET.cr == "countryBS" %}selected{% endif %}>Bahamas</option>
+                <option value="countryBH" {% if request.GET.cr == "countryBH" %}selected{% endif %}>Bahreïn</option>
+                <option value="countryBD" {% if request.GET.cr == "countryBD" %}selected{% endif %}>Bangladesh</option>
+                <option value="countryBB" {% if request.GET.cr == "countryBB" %}selected{% endif %}>Barbade</option>
+                <option value="countryBY" {% if request.GET.cr == "countryBY" %}selected{% endif %}>Biélorussie</option>
+                <option value="countryBE" {% if request.GET.cr == "countryBE" %}selected{% endif %}>Belgique</option>
+                <option value="countryBZ" {% if request.GET.cr == "countryBZ" %}selected{% endif %}>Belize</option>
+                <option value="countryBJ" {% if request.GET.cr == "countryBJ" %}selected{% endif %}>Bénin</option>
+                <option value="countryBM" {% if request.GET.cr == "countryBM" %}selected{% endif %}>Bermudes</option>
+                <option value="countryBT" {% if request.GET.cr == "countryBT" %}selected{% endif %}>Bhoutan</option>
+                <option value="countryBO" {% if request.GET.cr == "countryBO" %}selected{% endif %}>Bolivie</option>
+                <option value="countryBA" {% if request.GET.cr == "countryBA" %}selected{% endif %}>Bosnie-Herzégovine</option>
+                <option value="countryBW" {% if request.GET.cr == "countryBW" %}selected{% endif %}>Botswana</option>
+                <option value="countryBV" {% if request.GET.cr == "countryBV" %}selected{% endif %}>Bouvet (Île)</option>
+                <option value="countryBR" {% if request.GET.cr == "countryBR" %}selected{% endif %}>Brésil</option>
+                <option value="countryIO" {% if request.GET.cr == "countryIO" %}selected{% endif %}>Territoire britannique de l'océan Indien</option>
+                <option value="countryBN" {% if request.GET.cr == "countryBN" %}selected{% endif %}>Brunei Darussalam</option>
+                <option value="countryBG" {% if request.GET.cr == "countryBG" %}selected{% endif %}>Bulgarie</option>
+                <option value="countryBF" {% if request.GET.cr == "countryBF" %}selected{% endif %}>Burkina Faso</option>
+                <option value="countryBI" {% if request.GET.cr == "countryBI" %}selected{% endif %}>Burundi</option>
+                <option value="countryKH" {% if request.GET.cr == "countryKH" %}selected{% endif %}>Cambodge</option>
+                <option value="countryCM" {% if request.GET.cr == "countryCM" %}selected{% endif %}>Cameroun</option>
+                <option value="countryCA" {% if request.GET.cr == "countryCA" %}selected{% endif %}>Canada</option>
+                <option value="countryCV" {% if request.GET.cr == "countryCV" %}selected{% endif %}>Cap-Vert</option>
+                <option value="countryKY" {% if request.GET.cr == "countryKY" %}selected{% endif %}>Îles Caïmans</option>
+                <option value="countryCF" {% if request.GET.cr == "countryCF" %}selected{% endif %}>République centrafricaine</option>
+                <option value="countryTD" {% if request.GET.cr == "countryTD" %}selected{% endif %}>Tchad</option>
+                <option value="countryCL" {% if request.GET.cr == "countryCL" %}selected{% endif %}>Chili</option>
+                <option value="countryCN" {% if request.GET.cr == "countryCN" %}selected{% endif %}>Chine</option>
+                <option value="countryCX" {% if request.GET.cr == "countryCX" %}selected{% endif %}>Îles Christmas</option>
+                <option value="countryCC" {% if request.GET.cr == "countryCC" %}selected{% endif %}>Îles Cocos-Keeling</option>
+                <option value="countryCO" {% if request.GET.cr == "countryCO" %}selected{% endif %}>Colombie</option>
+                <option value="countryKM" {% if request.GET.cr == "countryKM" %}selected{% endif %}>Comores</option>
+                <option value="countryCG" {% if request.GET.cr == "countryCG" %}selected{% endif %}>Congo</option>
+                <option value="countryCD" {% if request.GET.cr == "countryCD" %}selected{% endif %}>Congo, République démocratique du</option>
+                <option value="countryCK" {% if request.GET.cr == "countryCK" %}selected{% endif %}>Cook (Îles)</option>
+                <option value="countryCR" {% if request.GET.cr == "countryCR" %}selected{% endif %}>Costa Rica</option>
+                <option value="countryCI" {% if request.GET.cr == "countryCI" %}selected{% endif %}>Côte d'Ivoire</option>
+                <option value="countryHR" {% if request.GET.cr == "countryHR" %}selected{% endif %}>Croatie (Hrvatska)</option>
+                <option value="countryCU" {% if request.GET.cr == "countryCU" %}selected{% endif %}>Cuba</option>
+                <option value="countryCY" {% if request.GET.cr == "countryCY" %}selected{% endif %}>Chypre</option>
+                <option value="countryCZ" {% if request.GET.cr == "countryCZ" %}selected{% endif %}>République tchèque</option>
+                <option value="countryDK" {% if request.GET.cr == "countryDK" %}selected{% endif %}>Danemark</option>
+                <option value="countryDJ" {% if request.GET.cr == "countryDJ" %}selected{% endif %}>Djibouti</option>
+                <option value="countryDM" {% if request.GET.cr == "countryDM" %}selected{% endif %}>Dominique</option>
+                <option value="countryDO" {% if request.GET.cr == "countryDO" %}selected{% endif %}>République dominicaine</option>
+                <option value="countryTP" {% if request.GET.cr == "countryTP" %}selected{% endif %}>Timor oriental (Île)</option>
+                <option value="countryEC" {% if request.GET.cr == "countryEC" %}selected{% endif %}>Équateur</option>
+                <option value="countryEG" {% if request.GET.cr == "countryEG" %}selected{% endif %}>Égypte</option>
+                <option value="countrySV" {% if request.GET.cr == "countrySV" %}selected{% endif %}>Salvador</option>
+                <option value="countryGQ" {% if request.GET.cr == "countryGQ" %}selected{% endif %}>Guinée équatoriale</option>
+                <option value="countryER" {% if request.GET.cr == "countryER" %}selected{% endif %}>Érythrée</option>
+                <option value="countryEE" {% if request.GET.cr == "countryEE" %}selected{% endif %}>Estonie</option>
+                <option value="countryET" {% if request.GET.cr == "countryET" %}selected{% endif %}>Éthiopie</option>
+                <option value="countryFK" {% if request.GET.cr == "countryFK" %}selected{% endif %}>Îles Malouines</option>
+                <option value="countryFO" {% if request.GET.cr == "countryFO" %}selected{% endif %}>Îles Féroé</option>
+                <option value="countryFJ" {% if request.GET.cr == "countryFJ" %}selected{% endif %}>Fidji</option>
+                <option value="countryFI" {% if request.GET.cr == "countryFI" %}selected{% endif %}>Finlande</option>
+                <option value="countryFR" {% if request.GET.cr == "countryFR" %}selected{% endif %}>France</option>
+                <option value="countryGF" {% if request.GET.cr == "countryGF" %}selected{% endif %}>Guyane française</option>
+                <option value="countryPF" {% if request.GET.cr == "countryPF" %}selected{% endif %}>Polynésie française</option>
+                <option value="countryTF" {% if request.GET.cr == "countryTF" %}selected{% endif %}>Terres australes françaises</option>
+                <option value="countryGA" {% if request.GET.cr == "countryGA" %}selected{% endif %}>Gabon</option>
+                <option value="countryGM" {% if request.GET.cr == "countryGM" %}selected{% endif %}>Gambie</option>
+                <option value="countryGE" {% if request.GET.cr == "countryGE" %}selected{% endif %}>Géorgie</option>
+                <option value="countryDE" {% if request.GET.cr == "countryDE" %}selected{% endif %}>Allemagne</option>
+                <option value="countryGH" {% if request.GET.cr == "countryGH" %}selected{% endif %}>Ghana</option>
+                <option value="countryGI" {% if request.GET.cr == "countryGI" %}selected{% endif %}>Gibraltar</option>
+                <option value="countryGR" {% if request.GET.cr == "countryGR" %}selected{% endif %}>Grèce</option>
+                <option value="countryGL" {% if request.GET.cr == "countryGL" %}selected{% endif %}>Groenland</option>
+                <option value="countryGD" {% if request.GET.cr == "countryGD" %}selected{% endif %}>Grenade</option>
+                <option value="countryGP" {% if request.GET.cr == "countryGP" %}selected{% endif %}>Guadeloupe</option>
+                <option value="countryGU" {% if request.GET.cr == "countryGU" %}selected{% endif %}>Guam</option>
+                <option value="countryGT" {% if request.GET.cr == "countryGT" %}selected{% endif %}>Guatemala</option>
+                <option value="countryGN" {% if request.GET.cr == "countryGN" %}selected{% endif %}>Guinée</option>
+                <option value="countryGW" {% if request.GET.cr == "countryGW" %}selected{% endif %}>Guinée-Bissau</option>
+                <option value="countryGY" {% if request.GET.cr == "countryGY" %}selected{% endif %}>Guyana</option>
+                <option value="countryHT" {% if request.GET.cr == "countryHT" %}selected{% endif %}>Haïti</option>
+                <option value="countryHM" {% if request.GET.cr == "countryHM" %}selected{% endif %}>Heard (Île) et McDonald (Îles)</option>
+                <option value="countryHN" {% if request.GET.cr == "countryHN" %}selected{% endif %}>Honduras</option>
+                <option value="countryHK" {% if request.GET.cr == "countryHK" %}selected{% endif %}>Hong-Kong</option>
+                <option value="countryHU" {% if request.GET.cr == "countryHU" %}selected{% endif %}>Hongrie</option>
+                <option value="countryIS" {% if request.GET.cr == "countryIS" %}selected{% endif %}>Islande</option>
+                <option value="countryIN" {% if request.GET.cr == "countryIN" %}selected{% endif %}>Inde</option>
+                <option value="countryID" {% if request.GET.cr == "countryID" %}selected{% endif %}>Indonésie</option>
+                <option value="countryIR" {% if request.GET.cr == "countryIR" %}selected{% endif %}>Iran</option>
+                <option value="countryIQ" {% if request.GET.cr == "countryIQ" %}selected{% endif %}>Irak</option>
+                <option value="countryIE" {% if request.GET.cr == "countryIE" %}selected{% endif %}>Irlande</option>
+                <option value="countryIT" {% if request.GET.cr == "countryIT" %}selected{% endif %}>Italie</option>
+                <option value="countryJM" {% if request.GET.cr == "countryJM" %}selected{% endif %}>Jamaïque</option>
+                <option value="countryJP" {% if request.GET.cr == "countryJP" %}selected{% endif %}>Japon</option>
+                <option value="countryJO" {% if request.GET.cr == "countryJO" %}selected{% endif %}>Jordanie</option>
+                <option value="countryKZ" {% if request.GET.cr == "countryKZ" %}selected{% endif %}>Kazakhstan</option>
+                <option value="countryKE" {% if request.GET.cr == "countryKE" %}selected{% endif %}>Kenya</option>
+                <option value="countryKI" {% if request.GET.cr == "countryKI" %}selected{% endif %}>Kiribati</option>
+                <option value="countryKW" {% if request.GET.cr == "countryKW" %}selected{% endif %}>Koweït</option>
+                <option value="countryKG" {% if request.GET.cr == "countryKG" %}selected{% endif %}>Kirghizistan</option>
+                <option value="countryLA" {% if request.GET.cr == "countryLA" %}selected{% endif %}>Laos</option>
+                <option value="countryLV" {% if request.GET.cr == "countryLV" %}selected{% endif %}>Lettonie</option>
+                <option value="countryLB" {% if request.GET.cr == "countryLB" %}selected{% endif %}>Liban</option>
+                <option value="countryLS" {% if request.GET.cr == "countryLS" %}selected{% endif %}>Lesotho</option>
+                <option value="countryLR" {% if request.GET.cr == "countryLR" %}selected{% endif %}>Liberia</option>
+                <option value="countryLY" {% if request.GET.cr == "countryLY" %}selected{% endif %}>Libye</option>
+                <option value="countryLI" {% if request.GET.cr == "countryLI" %}selected{% endif %}>Liechtenstein</option>
+                <option value="countryLT" {% if request.GET.cr == "countryLT" %}selected{% endif %}>Lituanie</option>
+                <option value="countryLU" {% if request.GET.cr == "countryLU" %}selected{% endif %}>Luxembourg</option>
+                <option value="countryMO" {% if request.GET.cr == "countryMO" %}selected{% endif %}>Macao</option>
+                <option value="countryMK" {% if request.GET.cr == "countryMK" %}selected{% endif %}>Macédoine, Ex-République yougoslave de</option>
+                <option value="countryMG" {% if request.GET.cr == "countryMG" %}selected{% endif %}>Madagascar</option>
+                <option value="countryMW" {% if request.GET.cr == "countryMW" %}selected{% endif %}>Malawi</option>
+                <option value="countryMY" {% if request.GET.cr == "countryMY" %}selected{% endif %}>Malaisie</option>
+                <option value="countryMV" {% if request.GET.cr == "countryMV" %}selected{% endif %}>Maldives</option>
+                <option value="countryML" {% if request.GET.cr == "countryML" %}selected{% endif %}>Mali</option>
+                <option value="countryMT" {% if request.GET.cr == "countryMT" %}selected{% endif %}>Malte</option>
+                <option value="countryMH" {% if request.GET.cr == "countryMH" %}selected{% endif %}>Marshall (Îles)</option>
+                <option value="countryMQ" {% if request.GET.cr == "countryMQ" %}selected{% endif %}>Martinique</option>
+                <option value="countryMR" {% if request.GET.cr == "countryMR" %}selected{% endif %}>Mauritanie</option>
+                <option value="countryMU" {% if request.GET.cr == "countryMU" %}selected{% endif %}>Maurice</option>
+                <option value="countryYT" {% if request.GET.cr == "countryYT" %}selected{% endif %}>Mayotte</option>
+                <option value="countryMX" {% if request.GET.cr == "countryMX" %}selected{% endif %}>Mexique</option>
+                <option value="countryFM" {% if request.GET.cr == "countryFM" %}selected{% endif %}>Micronésie, États fédérés de</option>
+                <option value="countryMD" {% if request.GET.cr == "countryMD" %}selected{% endif %}>Moldavie, République de</option>
+                <option value="countryMC" {% if request.GET.cr == "countryMC" %}selected{% endif %}>Monaco</option>
+                <option value="countryMN" {% if request.GET.cr == "countryMN" %}selected{% endif %}>Mongolie</option>
+                <option value="countryMS" {% if request.GET.cr == "countryMS" %}selected{% endif %}>Montserrat</option>
+                <option value="countryMA" {% if request.GET.cr == "countryMA" %}selected{% endif %}>Maroc</option>
+                <option value="countryMZ" {% if request.GET.cr == "countryMZ" %}selected{% endif %}>Mozambique</option>
+                <option value="countryMM" {% if request.GET.cr == "countryMM" %}selected{% endif %}>Myanmar</option>
+                <option value="countryNA" {% if request.GET.cr == "countryNA" %}selected{% endif %}>Namibie</option>
+                <option value="countryNR" {% if request.GET.cr == "countryNR" %}selected{% endif %}>Nauru</option>
+                <option value="countryNP" {% if request.GET.cr == "countryNP" %}selected{% endif %}>Népal</option>
+                <option value="countryNL" {% if request.GET.cr == "countryNL" %}selected{% endif %}>Pays-Bas</option>
+                <option value="countryAN" {% if request.GET.cr == "countryAN" %}selected{% endif %}>Antilles néerlandaises</option>
+                <option value="countryNC" {% if request.GET.cr == "countryNC" %}selected{% endif %}>Nouvelle-Calédonie</option>
+                <option value="countryNZ" {% if request.GET.cr == "countryNZ" %}selected{% endif %}>Nouvelle-Zélande</option>
+                <option value="countryNI" {% if request.GET.cr == "countryNI" %}selected{% endif %}>Nicaragua</option>
+                <option value="countryNE" {% if request.GET.cr == "countryNE" %}selected{% endif %}>Niger</option>
+                <option value="countryNG" {% if request.GET.cr == "countryNG" %}selected{% endif %}>Nigeria</option>
+                <option value="countryNU" {% if request.GET.cr == "countryNU" %}selected{% endif %}>Nioué</option>
+                <option value="countryNF" {% if request.GET.cr == "countryNF" %}selected{% endif %}>Île Norfolk</option>
+                <option value="countryMP" {% if request.GET.cr == "countryMP" %}selected{% endif %}>Mariannes du Nord (Îles)</option>
+                <option value="countryNO" {% if request.GET.cr == "countryNO" %}selected{% endif %}>Norvège</option>
+                <option value="countryOM" {% if request.GET.cr == "countryOM" %}selected{% endif %}>Oman</option>
+                <option value="countryPK" {% if request.GET.cr == "countryPK" %}selected{% endif %}>Pakistan</option>
+                <option value="countryPW" {% if request.GET.cr == "countryPW" %}selected{% endif %}>Palaos</option>
+                <option value="countryPS" {% if request.GET.cr == "countryPS" %}selected{% endif %}>Palestine</option>
+                <option value="countryPA" {% if request.GET.cr == "countryPA" %}selected{% endif %}>Panama</option>
+                <option value="countryPG" {% if request.GET.cr == "countryPG" %}selected{% endif %}>Papouasie-Nouvelle-Guinée</option>
+                <option value="countryPY" {% if request.GET.cr == "countryPY" %}selected{% endif %}>Paraguay</option>
+                <option value="countryPE" {% if request.GET.cr == "countryPE" %}selected{% endif %}>Pérou</option>
+                <option value="countryPH" {% if request.GET.cr == "countryPH" %}selected{% endif %}>Philippines</option>
+                <option value="countryPN" {% if request.GET.cr == "countryPN" %}selected{% endif %}>Pitcairn</option>
+                <option value="countryPL" {% if request.GET.cr == "countryPL" %}selected{% endif %}>Pologne</option>
+                <option value="countryPT" {% if request.GET.cr == "countryPT" %}selected{% endif %}>Portugal</option>
+                <option value="countryPR" {% if request.GET.cr == "countryPR" %}selected{% endif %}>Porto Rico</option>
+                <option value="countryQA" {% if request.GET.cr == "countryQA" %}selected{% endif %}>Qatar</option>
+                <option value="countryRE" {% if request.GET.cr == "countryRE" %}selected{% endif %}>Réunion</option>
+                <option value="countryRO" {% if request.GET.cr == "countryRO" %}selected{% endif %}>Roumanie</option>
+                <option value="countryRU" {% if request.GET.cr == "countryRU" %}selected{% endif %}>Russie</option>
+                <option value="countryRW" {% if request.GET.cr == "countryRW" %}selected{% endif %}>Rwanda</option>
+                <option value="countryBL" {% if request.GET.cr == "countryBL" %}selected{% endif %}>Saint-Barthélemy</option>
+                <option value="countrySH" {% if request.GET.cr == "countrySH" %}selected{% endif %}>Sainte-Hélène</option>
+                <option value="countryKN" {% if request.GET.cr == "countryKN" %}selected{% endif %}>Saint-Kitts-et-Nevis</option>
+                <option value="countryLC" {% if request.GET.cr == "countryLC" %}selected{% endif %}>Sainte-Lucie</option>
+                <option value="countryMF" {% if request.GET.cr == "countryMF" %}selected{% endif %}>Saint-Martin (partie française)</option>
+                <option value="countryPM" {% if request.GET.cr == "countryPM" %}selected{% endif %}>Saint-Pierre-et-Miquelon</option>
+                <option value="countryVC" {% if request.GET.cr == "countryVC" %}selected{% endif %}>Saint-Vincent-et-les Grenadines</option>
+                <option value="countryWS" {% if request.GET.cr == "countryWS" %}selected{% endif %}>Samoa</option>
+                <option value="countrySM" {% if request.GET.cr == "countrySM" %}selected{% endif %}>Saint-Marin</option>
+                <option value="countryST" {% if request.GET.cr == "countryST" %}selected{% endif %}>Sao Tomé-et-Principe</option>
+                <option value="countrySA" {% if request.GET.cr == "countrySA" %}selected{% endif %}>Arabie saoudite</option>
+                <option value="countrySN" {% if request.GET.cr == "countrySN" %}selected{% endif %}>Sénégal</option>
+                <option value="countryCS" {% if request.GET.cr == "countryCS" %}selected{% endif %}>Serbie et Monténégro</option>
+                <option value="countrySC" {% if request.GET.cr == "countrySC" %}selected{% endif %}>Seychelles</option>
+                <option value="countrySL" {% if request.GET.cr == "countrySL" %}selected{% endif %}>Sierra Leone</option>
+                <option value="countrySG" {% if request.GET.cr == "countrySG" %}selected{% endif %}>Singapour</option>
+                <option value="countrySK" {% if request.GET.cr == "countrySK" %}selected{% endif %}>Slovaquie</option>
+                <option value="countrySI" {% if request.GET.cr == "countrySI" %}selected{% endif %}>Slovénie</option>
+                <option value="countrySB" {% if request.GET.cr == "countrySB" %}selected{% endif %}>Îles Salomon</option>
+                <option value="countrySO" {% if request.GET.cr == "countrySO" %}selected{% endif %}>Somalie</option>
+                <option value="countryZA" {% if request.GET.cr == "countryZA" %}selected{% endif %}>Afrique du Sud</option>
+                <option value="countryGS" {% if request.GET.cr == "countryGS" %}selected{% endif %}>Îles Géorgie du Sud et Sandwich du Sud</option>
+                <option value="countryES" {% if request.GET.cr == "countryES" %}selected{% endif %}>Espagne</option>
+                <option value="countryLK" {% if request.GET.cr == "countryLK" %}selected{% endif %}>Sri Lanka</option>
+                <option value="countrySD" {% if request.GET.cr == "countrySD" %}selected{% endif %}>Soudan</option>
+                <option value="countrySR" {% if request.GET.cr == "countrySR" %}selected{% endif %}>Suriname</option>
+                <option value="countrySJ" {% if request.GET.cr == "countrySJ" %}selected{% endif %}>Svalbard et Jan Mayen</option>
+                <option value="countrySZ" {% if request.GET.cr == "countrySZ" %}selected{% endif %}>Swaziland</option>
+                <option value="countrySE" {% if request.GET.cr == "countrySE" %}selected{% endif %}>Suède</option>
+                <option value="countryCH" {% if request.GET.cr == "countryCH" %}selected{% endif %}>Suisse</option>
+                <option value="countrySY" {% if request.GET.cr == "countrySY" %}selected{% endif %}>Syrie (République arabe syrienne)</option>
+                <option value="countryTW" {% if request.GET.cr == "countryTW" %}selected{% endif %}>Taïwan, Province de Chine</option>
+                <option value="countryTJ" {% if request.GET.cr == "countryTJ" %}selected{% endif %}>Tadjikistan</option>
+                <option value="countryTZ" {% if request.GET.cr == "countryTZ" %}selected{% endif %}>Tanzanie, République unie de</option>
+                <option value="countryTH" {% if request.GET.cr == "countryTH" %}selected{% endif %}>Thaïlande</option>
+                <option value="countryTG" {% if request.GET.cr == "countryTG" %}selected{% endif %}>Togo</option>
+                <option value="countryTK" {% if request.GET.cr == "countryTK" %}selected{% endif %}>Tokélaou</option>
+                <option value="countryTO" {% if request.GET.cr == "countryTO" %}selected{% endif %}>Tonga</option>
+                <option value="countryTT" {% if request.GET.cr == "countryTT" %}selected{% endif %}>Trinité-et-Tobago</option>
+                <option value="countryTN" {% if request.GET.cr == "countryTN" %}selected{% endif %}>Tunisie</option>
+                <option value="countryTR" {% if request.GET.cr == "countryTR" %}selected{% endif %}>Turquie</option>
+                <option value="countryTM" {% if request.GET.cr == "countryTM" %}selected{% endif %}>Turkménistan</option>
+                <option value="countryTC" {% if request.GET.cr == "countryTC" %}selected{% endif %}>Îles Turks-et-Caïcos</option>
+                <option value="countryTV" {% if request.GET.cr == "countryTV" %}selected{% endif %}>Tuvalu</option>
+                <option value="countryUG" {% if request.GET.cr == "countryUG" %}selected{% endif %}>Ouganda</option>
+                <option value="countryUA" {% if request.GET.cr == "countryUA" %}selected{% endif %}>Ukraine</option>
+                <option value="countryAE" {% if request.GET.cr == "countryAE" %}selected{% endif %}>Émirats arabes unis</option>
+                <option value="countryUK" {% if request.GET.cr == "countryUK" %}selected{% endif %}>Royaume-Uni</option>
+                <option value="countryUS" {% if request.GET.cr == "countryUS" %}selected{% endif %}>États-Unis</option>
+                <option value="countryUM" {% if request.GET.cr == "countryUM" %}selected{% endif %}>Îles mineures éloignées des États-Unis</option>
+                <option value="countryUY" {% if request.GET.cr == "countryUY" %}selected{% endif %}>Uruguay</option>
+                <option value="countryUZ" {% if request.GET.cr == "countryUZ" %}selected{% endif %}>Ouzbékistan</option>
+                <option value="countryVU" {% if request.GET.cr == "countryVU" %}selected{% endif %}>Vanuatu</option>
+                <option value="countryVE" {% if request.GET.cr == "countryVE" %}selected{% endif %}>Venezuela</option>
+                <option value="countryVN" {% if request.GET.cr == "countryVN" %}selected{% endif %}>Viêt Nam</option>
+                <option value="countryVG" {% if request.GET.cr == "countryVG" %}selected{% endif %}>Îles Vierges britanniques</option>
+                <option value="countryVI" {% if request.GET.cr == "countryVI" %}selected{% endif %}>Vierges américaines (Îles)</option>
+                <option value="countryWF" {% if request.GET.cr == "countryWF" %}selected{% endif %}>Wallis-et-Futuna</option>
+                <option value="countryEH" {% if request.GET.cr == "countryEH" %}selected{% endif %}>Sahara occidental</option>
+                <option value="countryYE" {% if request.GET.cr == "countryYE" %}selected{% endif %}>Yémen</option>
+                <option value="countryYU" {% if request.GET.cr == "countryYU" %}selected{% endif %}>Yougoslavie</option>
+                <option value="countryZM" {% if request.GET.cr == "countryZM" %}selected{% endif %}>Zambie</option>
+                <option value="countryZW" {% if request.GET.cr == "countryZW" %}selected{% endif %}>Zimbabwe</option>                
+            </select>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="form-group">
+              <label for="num">Nombre de résultats</label>
+              <input type="number" class="form-control" id="num" name="num" value="{{ request.GET.num }}" min="1" max="10" placeholder="Taper un nombre entre 1 et 10">
+            </div>
+          </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="start">Position de départ</label>
+            <input type="number" class="form-control" id="start" name="start" value="{{ request.GET.start }}" placeholder="Numéro de Premier résultat à afficher">
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="exactTerms">Mots clés obligatoires</label>
+            <input type="text" class="form-control" id="exactTerms" name="exactTerms" value="{{ request.GET.exactTerms }}">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="excludeTerms">Mots clés à exclure</label>
+            <input type="text" class="form-control" id="excludeTerms" name="excludeTerms" value="{{ request.GET.excludeTerms }}">
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row mt-4">
+        <div class="col-md-5">
+          <div class="form-group">
+            <label for="siteSearch">Rechercher un ou plusieurs sites (séparés par des virgules)</label>
+            <textarea rows="12" cols="50" class="form-control" id="siteSearch" name="siteSearch" value="{{ request.GET.siteSearch }}"></textarea>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="siteSearch">Propositions</label>
+          <div class="form-check">
+            <div class="row">
+              <div class="col-md-6">
+                <input class="form-check-input" type="checkbox" id="criTTA" name="proposition" value="https://investangier.com/">CRI Tanger Tétouan Al Hoceima
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <input class="form-check-input" type="checkbox" id="criOriental" name="proposition" value="https://orientalinvest.ma/">CRI Oriental
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <input class="form-check-input" type="checkbox" id="criFes" name="proposition" value="https://fesmeknesinvest.ma/">CRI Fès Mèknes
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <input class="form-check-input" type="checkbox" id="criRabat" name="proposition" value="https://www.rabatinvest.ma/">CRI Rabat Salé Kénitra
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <input class="form-check-input" type="checkbox" id="criBM" name="proposition" value="https://coeurdumaroc.ma/cri/public/">CRI Beni Mellal Khénifra
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <input class="form-check-input" type="checkbox" id="criCasa" name="proposition" value="https://casainvest.ma/">CRI Casablanca Settat
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <input class="form-check-input" type="checkbox" id="criKech" name="proposition" value="https://marrakechinvest.ma/">CRI Marrakech Safi
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <input class="form-check-input" type="checkbox" id="criDT" name="proposition" value="https://cridraatafilalet.ma/">CRI Draa Tafilalet
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <input class="form-check-input" type="checkbox" id="criAgadir" name="proposition" value="https://agadirinvest.com/ar/%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A%D8%A9/">CRI Sous Massa
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <input class="form-check-input" type="checkbox" id="criGuelmim" name="proposition" value="http://www.guelmiminvest.ma/">CRI Guelmim Oued Noun
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <input class="form-check-input" type="checkbox" id="criLSH" name="proposition" value="https://laayouneinvest.ma/">CRI Laayoune Sakia El Hamra
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <input class="form-check-input" type="checkbox" id="criDakhla" name="proposition" value="https://www.dakhlainvest.com/">CRI Dakhla Oued Eddahab
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <input class="form-check-input" type="checkbox" id="AMDIE" name="proposition" value="https://amdie.gov.ma/">AMDIE
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <input class="form-check-input" type="checkbox" id="MICEPP" name="proposition" value="https://micepp.gov.ma/fr">Ministère de l'investissement
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1">
+          <div class="form-group">
+            <label for="siteSearchFilter">Filtre de recherche sur le site</label>
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="siteSearchFilter" name="siteSearchFilter" {% if request.GET.siteSearchFilter %}checked{% endif %}>
+              <label class="custom-control-label" for="siteSearchFilter"></label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row mt-4">
+        <div class="col-md-5">
+          <div class="form-group">
+            <label for="dateDebut">Date de publication entre</label>
+            <input type="date" class="form-control" id="dateDebut" name="dateDebut" value="{{ request.GET.dateDebut }}">
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="form-group">
+            <label for="dateFin">et</label>
+            <input type="date" class="form-control" id="dateFin" name="dateFin" value="{{ request.GET.dateFin }}">
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <label for="triParDate">Tri par date</label>
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="triParDate" name="sort" {% if request.GET.sort %}checked{% endif %}>
+              <label class="custom-control-label" for="triParDate"></label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="imgSize">Taille des images</label>
+            <select class="form-control" id="imgSize" name="imgSize">
+                <option value="" {% if request.GET.imgSize == "" %}selected{% endif %}></option>
+                <option value="huge" {% if request.GET.imgSize == "huge" %}selected{% endif %}>Enorme</option>
+                <option value="icon" {% if request.GET.imgSize == "icon" %}selected{% endif %}>Icône</option>
+                <option value="large" {% if request.GET.imgSize == "large" %}selected{% endif %}>Large</option>
+                <option value="medium" {% if request.GET.imgSize == "medium" %}selected{% endif %}>Moyenne</option>
+                <option value="small" {% if request.GET.imgSize == "small" %}selected{% endif %}>Petite</option>
+                <option value="xlarge" {% if request.GET.imgSize == "xlarge" %}selected{% endif %}>xLarge</option>
+                <option value="xxlarge" {% if request.GET.imgSize == "xxlarge" %}selected{% endif %}>xxLarge</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="imgColorType">Type de couleur de l'image</label>
+            <select class="form-control" id="imgColorType" name="imgColorType">
+                <option value="" {% if request.GET.imgColorType == "" %}selected{% endif %}></option>
+                <option value="color" {% if request.GET.imgColorType == "color" %}selected{% endif %}>En Couleur</option>
+                <option value="gray" {% if request.GET.imgColorType == "gray" %}selected{% endif %}>En Gris</option>
+                <option value="mono" {% if request.GET.imgColorType == "mono" %}selected{% endif %}>Noir et Blanc</option>
+                <option value="trans" {% if request.GET.imgColorType == "trans" %}selected{% endif %}>Arrière-plan transparent</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row mt-4">
+        <div class="col-md-12 text-center">
+          <button class="btn btn-primary" type="submit">Rechercher</button>
+          <button class="btn btn-secondary" type="reset">Effacer</button>
+        </div>
+      </div>
+    </form>
+
+    {% if error %}
+      <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    {% if results %}
+      <div class="mt-5">
+        <h3>Résultats de la recherche :</h3>
+        <ul>
+          {% for result in results %}
+            <li>
+              <a href="{{ result.link }}" target="_blank">{{ result.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+  </div>
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
