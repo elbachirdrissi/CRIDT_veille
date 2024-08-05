@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +10,11 @@
 </head>
 <body>
   <div class="container">
-    <form action="{% url 'form' %}" method="GET">
+    <form id="searchForm" action="{% url 'form' %}" method="GET">
       {% csrf_token %}
       <div class="row mt-4">
         <div class="col-md-6">
-          <img src="cridt.jpg" alt="logo_cridt">
+          <img src="{% static 'images/logo_cridt.jpg' %}" alt="logo_cridt" class="img-fluid">
         </div>
         <div class="col-md-6">
           <div class="text-center mt-4">
@@ -355,18 +357,24 @@
 
 
       <div class="row mt-4">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="form-group">
-              <label for="num">Nombre de résultats</label>
+              <label for="num">Nombre de résultats (Google)</label>
               <input type="number" class="form-control" id="num" name="num" value="{{ request.GET.num }}" min="1" max="10" placeholder="Taper un nombre entre 1 et 10">
             </div>
-          </div>
-        <div class="col-md-6">
+        </div>
+        <div class="col-md-4">
           <div class="form-group">
             <label for="start">Position de départ</label>
             <input type="number" class="form-control" id="start" name="start" value="{{ request.GET.start }}" placeholder="Numéro de Premier résultat à afficher">
           </div>
         </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="num">Nombre de résultats (DuckDuckGo)</label>
+            <input type="number" class="form-control" id="numD" name="numD" value="{{ request.GET.numD }}" min="10">
+          </div>
+        </div> 
       </div>
 
 
@@ -398,72 +406,72 @@
           <div class="form-check">
             <div class="row">
               <div class="col-md-6">
-                <input class="form-check-input" type="checkbox" id="criTTA" name="proposition" value="https://investangier.com/">CRI Tanger Tétouan Al Hoceima
+                <input class="form-check-input" type="checkbox" id="criTTA" name="proposition" value="https://investangier.com/" {% if "https://investangier.com/" in checked_sites %}checked{% endif %}>CRI Tanger Tétouan Al Hoceima
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <input class="form-check-input" type="checkbox" id="criOriental" name="proposition" value="https://orientalinvest.ma/">CRI Oriental
+                <input class="form-check-input" type="checkbox" id="criOriental" name="proposition" value="https://orientalinvest.ma/" {% if "https://orientalinvest.ma/" in checked_sites %}checked{% endif %}>CRI Oriental
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <input class="form-check-input" type="checkbox" id="criFes" name="proposition" value="https://fesmeknesinvest.ma/">CRI Fès Mèknes
+                <input class="form-check-input" type="checkbox" id="criFes" name="proposition" value="https://fesmeknesinvest.ma/" {% if "https://fesmeknesinvest.ma/" in checked_sites %}checked{% endif %}>CRI Fès Mèknes
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <input class="form-check-input" type="checkbox" id="criRabat" name="proposition" value="https://www.rabatinvest.ma/">CRI Rabat Salé Kénitra
+                <input class="form-check-input" type="checkbox" id="criRabat" name="proposition" value="https://www.rabatinvest.ma/" {% if "https://www.rabatinvest.ma/" in checked_sites %}checked{% endif %}>CRI Rabat Salé Kénitra
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <input class="form-check-input" type="checkbox" id="criBM" name="proposition" value="https://coeurdumaroc.ma/cri/public/">CRI Beni Mellal Khénifra
+                <input class="form-check-input" type="checkbox" id="criBM" name="proposition" value="https://coeurdumaroc.ma/cri/public/" {% if "https://coeurdumaroc.ma/cri/public/" in checked_sites %}checked{% endif %}>CRI Beni Mellal Khénifra
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <input class="form-check-input" type="checkbox" id="criCasa" name="proposition" value="https://casainvest.ma/">CRI Casablanca Settat
+                <input class="form-check-input" type="checkbox" id="criCasa" name="proposition" value="https://casainvest.ma/" {% if "https://casainvest.ma/" in checked_sites %}checked{% endif %}>CRI Casablanca Settat
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <input class="form-check-input" type="checkbox" id="criKech" name="proposition" value="https://marrakechinvest.ma/">CRI Marrakech Safi
+                <input class="form-check-input" type="checkbox" id="criKech" name="proposition" value="https://marrakechinvest.ma/" {% if "https://marrakechinvest.ma/" in checked_sites %}checked{% endif %}>CRI Marrakech Safi
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <input class="form-check-input" type="checkbox" id="criDT" name="proposition" value="https://cridraatafilalet.ma/">CRI Draa Tafilalet
+                <input class="form-check-input" type="checkbox" id="criDT" name="proposition" value="https://cridraatafilalet.ma/" {% if "https://cridraatafilalet.ma/" in checked_sites %}checked{% endif %}>CRI Draa Tafilalet
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <input class="form-check-input" type="checkbox" id="criAgadir" name="proposition" value="https://agadirinvest.com/ar/%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A%D8%A9/">CRI Sous Massa
+                <input class="form-check-input" type="checkbox" id="criAgadir" name="proposition" value="https://agadirinvest.com/ar/%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A%D8%A9/" {% if "https://agadirinvest.com/ar/%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A%D8%A9/" in checked_sites %}checked{% endif %}>CRI Sous Massa
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <input class="form-check-input" type="checkbox" id="criGuelmim" name="proposition" value="http://www.guelmiminvest.ma/">CRI Guelmim Oued Noun
+                <input class="form-check-input" type="checkbox" id="criGuelmim" name="proposition" value="http://www.guelmiminvest.ma/" {% if "http://www.guelmiminvest.ma/" in checked_sites %}checked{% endif %}>CRI Guelmim Oued Noun
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <input class="form-check-input" type="checkbox" id="criLSH" name="proposition" value="https://laayouneinvest.ma/">CRI Laayoune Sakia El Hamra
+                <input class="form-check-input" type="checkbox" id="criLSH" name="proposition" value="https://laayouneinvest.ma/" {% if "https://laayouneinvest.ma/" in checked_sites %}checked{% endif %}>CRI Laayoune Sakia El Hamra
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <input class="form-check-input" type="checkbox" id="criDakhla" name="proposition" value="https://www.dakhlainvest.com/">CRI Dakhla Oued Eddahab
+                <input class="form-check-input" type="checkbox" id="criDakhla" name="proposition" value="https://www.dakhlainvest.com/" {% if "https://www.dakhlainvest.com/" in checked_sites %}checked{% endif %}>CRI Dakhla Oued Eddahab
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <input class="form-check-input" type="checkbox" id="AMDIE" name="proposition" value="https://amdie.gov.ma/">AMDIE
+                <input class="form-check-input" type="checkbox" id="AMDIE" name="proposition" value="https://amdie.gov.ma/" {% if "https://amdie.gov.ma/" in checked_sites %}checked{% endif %}>AMDIE
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <input class="form-check-input" type="checkbox" id="MICEPP" name="proposition" value="https://micepp.gov.ma/fr">Ministère de l'investissement
+                <input class="form-check-input" type="checkbox" id="MICEPP" name="proposition" value="https://micepp.gov.ma/fr" {% if "https://micepp.gov.ma/fr" in checked_sites %}checked{% endif %}>Ministère de l'investissement
               </div>
             </div>
           </div>
@@ -539,7 +547,8 @@
       <div class="row mt-4">
         <div class="col-md-12 text-center">
           <button class="btn btn-primary" type="submit">Rechercher</button>
-          <button class="btn btn-secondary" type="reset">Effacer</button>
+          <button class="btn btn-secondary" type="button" id="clearButton">Effacer les résultats</button>
+          <button class="btn btn-secondary" type="button" id="resetButton">Réinitialiser le formulaire</button>
         </div>
       </div>
     </form>
@@ -548,11 +557,12 @@
       <p style="color:red;">{{ error }}</p>
     {% endif %}
 
-    {% if results %}
-      <div class="mt-5">
-        <h3>Résultats de la recherche :</h3>
+    <h3>Résultats de la recherche :</h3>
+    {% if Gresults %}
+      <div class="mt-5" id="googleResults">
+        <h5>D'aprés le moteur de recherche Google :</h5>
         <ul>
-          {% for result in results %}
+          {% for result in Gresults %}
             <li>
               <a href="{{ result.link }}" target="_blank">{{ result.title }}</a>
             </li>
@@ -561,8 +571,32 @@
       </div>
     {% endif %}
 
+    {% if Dresults %}
+    <div class="mt-5" id="duckduckgoResults">
+      <h5>D'aprés le moteur de recherche DuckDuckGo :</h5>
+      <ul>
+        {% for result in Dresults %}
+          <li>
+            <a href="{{ result.link }}" target="_blank">{{ result.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
   </div>
-  
+
+  <script>
+    document.getElementById('clearButton').addEventListener('click', function() {
+      document.getElementById('googleResults').innerHTML = '';
+      document.getElementById('duckduckgoResults').innerHTML = '';
+    });
+    document.getElementById('resetButton').addEventListener('click', function() {
+      document.getElementById('googleResults').innerHTML = '';
+      document.getElementById('duckduckgoResults').innerHTML = '';
+      window.location.href = "{% url 'form' %}";
+    });
+  </script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

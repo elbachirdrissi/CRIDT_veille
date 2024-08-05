@@ -18,20 +18,27 @@ def form(request):
         sort = 'date' if request.GET.get('sort') else ''
         start = request.GET.get('start', '')
         num = request.GET.get('num', '')
+        
+        numD = request.GET.get('numD', 10)
+        try:
+            numD = int(numD)
+        except ValueError:
+            numD = 10
+        
         exactTerms = request.GET.get('exactTerms', '')
         excludeTerms = request.GET.get('excludeTerms', '')
+        
         siteSearch = request.GET.get('siteSearch', '')
+        sites = [site.strip() for site in siteSearch.split(',')] if siteSearch else ['']
         checked_sites = request.GET.getlist('proposition')
+        sites.extend(checked_sites)
         siteSearchFilter = 'i' if request.GET.get('siteSearchFilter') else 'e'
+        
         dateDebut = request.GET.get('dateDebut', '')
         dateFin = request.GET.get('dateFin', '')
         dateRestrict = f"{dateDebut}:{dateFin}" if dateDebut and dateFin else ''
         imgSize = request.GET.get('imgSize', '')
         imgColorType = request.GET.get('imgColorType', '')
-        
-        dateRestrict = f"{dateDebut}:{dateFin}" if dateDebut and dateFin else ''
-        sites = [site.strip() for site in siteSearch.split(',')] if siteSearch else ['']
-        sites.extend(checked_sites)
         
         
         #Google custom search result
@@ -72,7 +79,7 @@ def form(request):
             region = 'wt-wt',
             safesearch = 'off',
             timelimit='7d',
-            max_results = 10
+            max_results = numD
         )
         for Dresult in Dresults:
             duckduckgo_results.append({
@@ -81,7 +88,10 @@ def form(request):
             })
 
 
-        all_results = google_result + duckduckgo_results
-        return render(request, 'pages/form.html', {'results': all_results})
+        return render(request, 'pages/form.html', {
+            'Gresults': google_result,
+            'Dresults': duckduckgo_results,
+            'checked_sites': checked_sites
+            })
     
     return render(request, 'pages/form.html')
